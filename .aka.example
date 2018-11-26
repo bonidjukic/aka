@@ -1,0 +1,8 @@
+command_group = {
+  command_subgroup = {
+    list = 'ls -alh',
+    ['list-use-dash'] = 'ls'
+  }
+}
+
+single_command = 'pwd'
