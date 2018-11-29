@@ -6,8 +6,7 @@ aka - Per directory shell aliases
 
 ---------------------------------------------------------------------
 
-local os     = os
-local strfmt = string.format
+local arg, os, sfmt = arg, os, string.format
 
 ---------------------------------------------------------------------
 
@@ -134,7 +133,7 @@ end
 -- Prints error message
 --
 function aka.print_err(err)
-  print(strfmt('aka: %s\nSee \'aka -h\' or \'aka --help\'', err))
+  print(sfmt('aka: %s\nSee \'aka -h\' or \'aka --help\'', err))
 end
 
 -- Prints usage message
