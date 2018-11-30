@@ -6,7 +6,23 @@ aka - Per directory shell aliases
 
 ---------------------------------------------------------------------
 
-local arg, os, sfmt = arg, os, string.format
+-- CONSTANTS
+local CFG_FILE   = '.aka'
+
+-- MODULES
+local arg        = arg
+local os         = os
+local io         = io
+local next       = next
+
+-- FUNCTIONS
+local str_fmt    = string.format
+local os_exit    = os.exit
+local os_execute = os.execute
+local io_open    = io.open
+local io_popen   = io.popen
+local io_close   = io.close
+local str_gsub   = string.gsub
 
 ---------------------------------------------------------------------
 
@@ -27,16 +43,18 @@ setmetatable(aka, mt)
 --
 function aka:init(args)
   self.args = args
-  self.cfg  = aka.get_cfg()
   self.opt  = aka.get_opt(self.args)
-  self.cmd  = aka.get_cmd(self.cfg, self.args)
 
   if #self.args == 0 then
-    aka.print_help()     -- single argument is invalid choice, print help
-  elseif self.opt then
+    aka.print_help() -- single argument is invalid choice, print help
+    os_exit()
+  end
+
+  if self.opt then
     self.run_opt(self.opt) -- run option function
   else
-    self.run_cmd(self.cmd) -- run alias(es) command
+    self.run_cmd(
+      aka.get_cmd(aka.get_cfg(), self.args)) -- run alias(es) command
   end
 end
 
@@ -104,36 +122,43 @@ end
 function aka.run_cmd(cmd)
   if not cmd then
     aka.print_err('alias not found in the .aka config file.')
-    os.exit()
+    os_exit()
   else
-    os.execute(cmd)
+    os_execute(cmd)
   end
 
   return
 end
 
+-- Checks if file exists on a given location
+--
+function aka.file_exists(path)
+  local f = io_open(path, 'r')
+  if f ~= nil then io_close(f) return true
+  else return false end
+end
+
 -- Attempts to load .aka configuration file from the current working
 -- directory and if successfull returns that configuration as table
 --
--- Return nil if unable to load configuration file
---
 function aka.get_cfg()
-  local cfg = {}
-  local f, err = loadfile('.aka', 't', cfg)
+  local f_path = aka.os_capture('pwd') .. '/' .. CFG_FILE
 
-  if f then
-    f()
-    return cfg
-  else
-    aka.print_err('.aka config file not found.')
-    os.exit()
+  if not aka.file_exists(f_path) then
+    aka.print_err(CFG_FILE .. ' config file not found in current directory')
+    os_exit()
   end
+
+  local cfg = {}
+  assert(pcall(setfenv(assert(loadfile(f_path)), cfg)))
+
+  return cfg
 end
 
 -- Prints error message
 --
 function aka.print_err(err)
-  print(sfmt('aka: %s\nSee \'aka -h\' or \'aka --help\'', err))
+  print(str_fmt('aka: %s\nSee \'aka -h\' or \'aka --help\'', err))
 end
 
 -- Prints usage message
@@ -152,6 +177,23 @@ Options:
   -l, --list        List all aliases
   -h, --help        Print usage
 ]]
+end
+
+-- Executes the command and returns its captured output
+--
+-- Thanks to: https://stackoverflow.com/a/326715/6817428
+--
+function aka.os_capture(cmd)
+  local f = assert(io_popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+
+  f:close()
+
+  s = str_gsub(s, '^%s+', '')
+  s = str_gsub(s, '%s+$', '')
+  s = str_gsub(s, '[\n\r]+', ' ')
+
+  return s
 end
 
 ---------------------------------------------------------------------

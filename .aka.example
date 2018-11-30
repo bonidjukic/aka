@@ -1,8 +1,10 @@
-command_group = {
-  command_subgroup = {
+-- regular aliases
+pwd_alias = 'pwd'
+du_alias = 'du -h'
+
+-- nested aliases
+alias_group = {
+  alias_subgroup = {
     list = 'ls -alh',
-    ['list-use-dash'] = 'ls'
   }
 }
-
-single_command = 'pwd'
