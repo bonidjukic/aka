@@ -35,17 +35,21 @@ end
 -- Returns path joined with a slash character, e.g. foo/bar/baz
 --
 function _M.path_join(...)
-  local args   = {...}
-  local path_t = {}
+  local args = {...}
+  local t    = {}
+  local cnt  = 1
 
   for _, v in pairs(args) do
-    table.insert(path_t, v)
-    if #path_t <= #args then
-      table.insert(path_t, '/')
+    table.insert(t, v)
+
+    if cnt < #args then
+      table.insert(t, '/')
     end
+
+    cnt = cnt + 1
   end
 
-  return table.concat(path_t)
+  return table.concat(t)
 
 end
 
