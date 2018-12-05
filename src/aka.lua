@@ -39,7 +39,7 @@ setmetatable(aka, mt)
 ---------------------------------------------------------------------
 
 -- Initializes aka library which sets some objects on the instance
--- and calls parsing function if the config file has been found
+-- and runs appropriate runner method if the config file has been found
 --
 function aka:init(args)
   self.args = args
