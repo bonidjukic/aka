@@ -150,9 +150,11 @@ function aka.get_cfg()
   end
 
   local cfg = {}
-  assert(pcall(setfenv(assert(loadfile(f_path)), cfg)))
 
-  return cfg
+  local chunk, err = loadfile('.aka', 't', cfg)
+  if not err then chunk() end
+
+  return cfg, err
 end
 
 -- Prints error message
