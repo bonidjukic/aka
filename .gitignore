@@ -1,6 +1,6 @@
-# aka configuration file
+# configuration file
 .aka
 
-# aka binary build files
-src/aka.lua.c
+# binary build files
+src/*.lua.c
 src/aka
