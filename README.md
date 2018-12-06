@@ -77,10 +77,8 @@ aka - per directory shell aliases
 Usage:
   aka alias [sub_alias sub_sub_alias ...]
   aka -h|--help
-  aka -l|--list
 
 Options:
-  -l, --list        List all aliases
   -h, --help        Print usage
 ```
 
@@ -138,6 +136,13 @@ Navigate to `aka` project's root directory and run:
 ```
 busted
 ```
+
+## Roadmap
+
+There are a couple of features I'm planning to add in the near future:
+
+- ability to list all aliases from the current directory's `.aka` config file
+- ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias)
 
 ## Versioning
 
