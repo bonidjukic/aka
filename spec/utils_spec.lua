@@ -8,7 +8,7 @@
 
 require 'busted.runner'()
 
-local utils = require 'utils'
+local utils = require 'aka.utils'
 
 ---------------------------------------------------------------------
 
@@ -62,11 +62,12 @@ end)
 --
 describe('tests load_cfg', function()
   local tmpf = '/tmp/aka_test_file'
-  local cfg  = { alias_1 = 'alias_1',
-                 alias_2 = {
-                   alias_3 = 'alias_3'
-                 }
-               }
+  local cfg  = {
+    alias_1 = 'alias_1',
+    alias_2 = {
+      alias_3 = 'alias_3'
+    }
+  }
 
   setup(function()
     f = io.open(tmpf, 'w')
