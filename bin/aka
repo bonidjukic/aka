@@ -1,0 +1,3 @@
+#!/usr/bin/env lua
+-- aka command-line executable
+require 'aka.init'
