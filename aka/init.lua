@@ -6,8 +6,8 @@
 
 ---------------------------------------------------------------------
 
-local aka   = require 'aka'
-local utils = require 'utils'
+local aka   = require 'aka.core'
+local utils = require 'aka.utils'
 
 ---------------------------------------------------------------------
 
