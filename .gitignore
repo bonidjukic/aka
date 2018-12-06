@@ -1,6 +1,5 @@
 # configuration file
 .aka
 
-# binary build files
-src/*.lua.c
-src/aka
+# manual (luastatic) build files
+build/
