@@ -2,7 +2,9 @@
 
 # aka
 
-aka is a simple command-line tool which lets you define per directory config files as aliases for shell commands.
+**aka is a simple command-line tool which lets you define per directory config files as aliases for shell commands.**
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Motivation
 
