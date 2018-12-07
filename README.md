@@ -1,4 +1,5 @@
 
+
 # aka
 
 aka is a simple command-line tool which lets you define per directory config files as aliases for shell commands.
@@ -21,13 +22,13 @@ Being an avid user of Linux' `alias` command, oftentimes I found myself frustrat
 ### Overview
 Using `aka` is quite straightforward:
 
-- create a `.aka` text file in a directory where you'd like to be able to use `aka` aliases;
+- create an `.aka` text file in a directory where you'd like to be able to use `aka` aliases;
 - define your aliases;
 - run `aka [your_alias]`.
 
 ### Configuration File
 
-Configuration files are actually [lua](https://www.lua.org/) files which means we're using:
+Configuration files are actually [Lua](https://www.lua.org/) files which means we're using:
 
 - `lua` strings for regular / simple aliases;
 - `lua` tables for namespaced / nested aliases;
@@ -86,15 +87,23 @@ Options:
 
 ### Use Pre-compiled Binary
 
+#### Overview
+
 The goal from the start was for this tool to be easily distributable across Linux machines (not having to have Lua on your system to be able to use `aka`).
 
-With this in mind and the fact that [Lua is small](https://www.lua.org/about.html), there are pre-compiled binary files available for download which will contain the entire Lua (interpreter and standard libraries) and `aka` source code.
+With this in mind and the fact that [Lua is small](https://www.lua.org/about.html), pre-compiled x86_64 linux binaries are available for download which contain the entire Lua (interpreter and standard libraries) and `aka` source code.
+
+#### Download
+
+https://github.com/bonidjukic/aka/releases/latest
 
 ### Using [LuaRocks](https://luarocks.org) To Install
 
 To install `aka` using `luarocks` package manager, run this command in your terminal:
 
-```luarocks install aka```
+```
+luarocks install aka
+```
 
 If you don't have [LuaRocks](https://luarocks.org)  installed, this [document](https://github.com/luarocks/luarocks/wiki/Download)  can guide you through the process.
 
