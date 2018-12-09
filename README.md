@@ -1,9 +1,8 @@
-
-
 # aka
 
 **aka is a simple command-line tool which lets you define per directory config files as aliases for shell commands.**
 
+[![Build Status](https://travis-ci.org/bonidjukic/aka.svg?branch=master)](https://travis-ci.org/bonidjukic/aka)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Motivation
