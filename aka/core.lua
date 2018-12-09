@@ -43,7 +43,7 @@ end
 -- Calls aka module function with the following name: `run_{opt_name}_opt`
 --
 function _M.run_opt(opt)
-  _M['run_' .. opt .. '_opt']()
+  return _M['run_' .. opt .. '_opt']()
 end
 
 -- Prints help message
