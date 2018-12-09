@@ -17,7 +17,7 @@ Being an avid user of Linux' `alias` command, oftentimes I found myself frustrat
 
 ## Usage
 
-![](./docs/resources/usage.gif)
+<a href="https://asciinema.org/a/215736?autoplay=1" target="_blank"><img src="https://asciinema.org/a/215736.svg" /></a>
 
 ---
 
