@@ -78,9 +78,11 @@ aka - per directory shell aliases
 
 Usage:
   aka alias [sub_alias sub_sub_alias ...]
+  aka -l|--list
   aka -h|--help
 
 Options:
+  -l, --list        List all aliases
   -h, --help        Print usage
 ```
 

@@ -42,20 +42,55 @@ end
 
 -- Calls aka module function with the following name: `run_{opt_name}_opt`
 --
-function _M.run_opt(opt)
-  return _M['run_' .. opt .. '_opt']()
+function _M.run_opt(t)
+  return _M['run_' .. t.opt .. '_opt'](t)
 end
 
 -- Prints help message
 --
-function _M.run_help_opt()
+function _M.run_help_opt(t)
   return _M.print_help()
 end
 
 -- Prints all available aliases found in the configuration file
 --
-function _M.run_list_opt()
-  print 'TODO list all aliases'
+function _M.run_list_opt(t)
+  local opt = t.opt
+  local cfg = t.config
+  local n   = 0
+
+  local list_recur = function(cfg, list_recur)
+    local indent = function()
+      for i = 1, n do
+        io.write('   ')
+      end
+    end
+
+    for k, v in pairs(cfg) do
+      if type(v) == 'table' then
+        indent()
+        print('- [' .. k .. ']')
+        n = n + 1
+        list_recur(v, list_recur)
+      else
+        indent()
+        print(string.format('- [%s = \'%s\']', tostring(k), tostring(v)))
+      end
+    end
+    n = n - 1
+  end
+
+  print('')
+  for k, v in pairs(cfg) do
+    if type(v) == 'table' then
+      print('[' .. k .. ']')
+      n = n + 1
+      list_recur(v, list_recur)
+    else
+      print(string.format('[%s = \'%s\']', tostring(k), tostring(v)))
+    end
+  end
+  print('')
 end
 
 -- Returns the alias specified by the command line argument if there is
@@ -91,8 +126,8 @@ aka - per directory shell aliases
 
 Usage:
   aka alias [sub_alias sub_sub_alias ...]
-  aka -h|--help
   aka -l|--list
+  aka -h|--help
 
 
 Options:
