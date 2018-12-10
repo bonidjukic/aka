@@ -1,8 +1,8 @@
 package = 'aka'
-version = '1.0.0-1'
+version = '1.1.0-1'
 source = {
-  url = 'https://github.com/bonidjukic/aka/archive/v1.0.0.tar.gz',
-  dir = 'aka-1.0.0',
+  url = 'https://github.com/bonidjukic/aka/archive/v1.1.0.tar.gz',
+  dir = 'aka-1.1.0',
 }
 description = {
   summary = 'Per directory shell aliases',
