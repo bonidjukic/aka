@@ -11,6 +11,7 @@ Being an avid user of Linux' `alias` command, oftentimes I found myself frustrat
 
 - be able to use namespaced (nested) aliases;
 - be able to define configuration files in directories which would serve as per-directory-context aliases;
+- be able to list all aliases within the current directory's context;
 - use simple format for configuration files (as close as possible to `alias` syntax);
 - integrate nicely with version control (e.g. add configuration file to the VCS to be shared among team members).
 
@@ -25,7 +26,8 @@ Using `aka` is quite straightforward:
 
 - create an `.aka` text file in a directory where you'd like to be able to use `aka` aliases;
 - define your aliases;
-- run `aka [your_alias]`.
+- run `aka [your_alias]` to execute your aliases;
+- run `aka -l` or `aka --list` to list all available aliases
 
 ### Configuration File
 
@@ -153,8 +155,8 @@ busted
 
 There are a couple of features I'm planning to add in the near future:
 
-- ability to list all aliases from the current directory's `.aka` config file
-- ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias)
+- ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias);
+- ability to autocomplete `aka` aliases using bash completions.
 
 ## Versioning
 
