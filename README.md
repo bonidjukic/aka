@@ -157,6 +157,8 @@ busted
 
 There are a couple of features I'm planning to add in the near future:
 
+- ability to execute `aka` from children directories as well (currently it's only possible to execute `aka` from the same directory where the config file is located);
+- ability to pass arguments to aliases (this is not possible ATM);
 - ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias);
 - ability to autocomplete `aka` aliases using bash completions.
 
