@@ -23,8 +23,8 @@ local opt = aka.get_opt(args)
 if #args == 0 or (opt and opt == 'help') then aka.print_help() return end
 
 -- Load configuration
-local cfg_path = utils.path_join(utils.pwd(), aka.CFG_FILE)
-local cfg, err = utils.load_cfg(cfg_path)
+
+local cfg, err = utils.load_cfg(aka.CFG_FILE)
 if err then aka.print_err(err) return end
 
 -- Run option runner function if we have an argument option
