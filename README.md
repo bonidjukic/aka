@@ -167,6 +167,10 @@ There are a couple of features I'm planning to add in the near future:
 - ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias);
 - ability to autocomplete `aka` aliases using bash completions.
 
+## Nomenclature
+
+If it's not obvious, `aka` was named after the acronym of the *Also known as* adverb, i.e. *a.k.a* which is a synonym of *alias* and also has a nice side effect of being very short to type.
+
 ## Versioning
 
 [SemVer](http://semver.org/) is used for versioning. For the versions available, see the [tags on this repository](https://github.com/bonidjukic/aka/tags).
