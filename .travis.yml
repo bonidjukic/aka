@@ -4,8 +4,6 @@ language: python
 sudo: false
 
 env:
-  - LUA="lua=5.2"
-  - LUA="lua=5.3"
   - LUA="luajit=2.0"
   - LUA="luajit=2.1"
 
@@ -19,3 +17,8 @@ install:
 
 script:
   - busted --verbose
+
+notifications:
+  email:
+    on_success: change
+    on_failure: alway
