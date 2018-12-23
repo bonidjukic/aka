@@ -19,6 +19,10 @@ install:
 script:
   - busted --verbose
 
+branches:
+  only:
+    - master
+
 notifications:
   email:
     on_success: change
