@@ -17,6 +17,12 @@ Being an avid user of Linux' `alias` command, oftentimes I found myself frustrat
 - use simple format for configuration files (as close as possible to `alias` syntax);
 - integrate nicely with version control (e.g. add configuration file to the VCS to be shared among team members).
 
+## Features
+
+- define both [simple and nested aliases](#configuration-file)
+- list defined aliases (`aka -l` or `aka --list`)
+- recursively seek for `.aka` config file in parent directories
+
 ## Usage
 
 <a href="https://asciinema.org/a/215736?autoplay=1" target="_blank"><img src="https://asciinema.org/a/215736.svg" /></a>
@@ -157,7 +163,6 @@ busted
 
 There are a couple of features I'm planning to add in the near future:
 
-- ability to execute `aka` from children directories as well (currently it's only possible to execute `aka` from the same directory where the config file is located);
 - ability to pass arguments to aliases (this is not possible ATM);
 - ability to define `.aka.local` config file which could be used to override aliases from `.aka` config (useful when `.aka` is added to VCS and you'd like to have a different local version of a certain alias);
 - ability to autocomplete `aka` aliases using bash completions.
