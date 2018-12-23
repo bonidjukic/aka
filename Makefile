@@ -14,8 +14,9 @@ build:
 		aka/init.lua \
 		aka/core.lua \
 		aka/utils.lua \
-		/usr/lib/x86_64-linux-gnu/liblua5.3.a \
-		-I/usr/include/lua5.3 \
+		/usr/local/lib/libluajit-5.1.a \
+		-I/usr/local/include/luajit-2.0 \
+		-no-pie \
 		-o build/aka
 	mv aka.lua.c build/
 
