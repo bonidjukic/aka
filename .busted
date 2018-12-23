@@ -1,5 +1,6 @@
 return {
   _all = {
-    lua = 'luajit'
+    lua = 'luajit',
+    verbose = true
   }
 }
