@@ -104,7 +104,7 @@ Options:
 
 The goal from the start was for this tool to be easily distributable across Linux machines (not having to have Lua on your system to be able to use `aka`).
 
-With this in mind and the fact that [Lua is small](https://www.lua.org/about.html), pre-compiled x86_64 linux binaries are available for download which contain the entire Lua (interpreter and standard libraries) and `aka` source code.
+With this in mind and the fact that [Lua is small](https://www.lua.org/about.html), pre-compiled x86_64 linux binaries are available for download which contain the entire LuaJIT compiler and `aka` source code.
 
 #### Download
 
