@@ -35,6 +35,16 @@ end)
 -- chdir
 --
 describe('tests chdir', function()
+  local cwd
+
+  setup(function()
+    cwd = utils.getcwd()
+  end)
+
+  teardown(function()
+    utils.chdir(cwd)
+  end)
+
   it('tests temporary directory', function()
     utils.chdir('/tmp')
     utils.chdir('..')
