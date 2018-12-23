@@ -1,16 +1,17 @@
-# Config file for automatic testing at travis-ci.org
+language: c
 
-language: python
 sudo: false
 
 env:
-  - LUA="luajit=2.0"
-  - LUA="luajit=2.1"
+  global:
+    - LUAROCKS=2.3.0
+  matrix:
+    - LUA=luajit
+    - LUA=luajit2.0
+    - LUA=luajit2.1
 
 before_install:
-  - pip install hererocks
-  - hererocks lua_install -r^ --$LUA
-  - export PATH=$PATH:$PWD/lua_install/bin
+  - source .travis/setenv_lua.sh
 
 install:
   - luarocks install busted
@@ -21,4 +22,4 @@ script:
 notifications:
   email:
     on_success: change
-    on_failure: alway
+    on_failure: always
