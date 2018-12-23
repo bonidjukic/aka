@@ -59,17 +59,39 @@ function _M.path_join(...)
   return table.concat({...}, '/')
 end
 
--- Attempts to load configuration file from the current working
--- directory and if successfull returns the configuration as table
+-- Attempts to load the configuration file by recursively seeking for it
+-- starting with the current directory and moving up until reaching root dir
 --
-function _M.load_cfg(path)
-  if not _M.file_exists(path) then
-    local err = 'config file not found: ' .. path
-    return nil, err
+function _M.load_cfg(cfg_file)
+  -- Define root directory
+  local ROOT_DIR = '/'
+
+  -- Recursive seek config function
+  local function seek_cfg(dir)
+    -- If not dir then set dir to the current working directory
+    if not dir then dir = _M.getcwd() end
+    -- Check if we should stop seeking for the config
+    if dir == ROOT_DIR then return nil end
+
+    -- If the config file exist this particular location, return its path
+    if _M.file_exists(cfg_file) then
+      return _M.path_join(_M.getcwd(), cfg_file)
+    else
+      -- Go up one directory and call `seek_cfg` to continue seeking
+      _M.chdir('..')
+      return seek_cfg()
+    end
   end
 
-  local cfg = {}
+  local cfg  = {}
+  local path = seek_cfg()
 
+  -- Check if we reached `ROOT_DIR` before finding the config
+  if not path then
+    return nil, 'config file not found'
+  end
+
+  -- Load the config chunk and execute it
   local chunk, err = loadfile(path, 't', cfg)
   if not err then chunk() end
 
