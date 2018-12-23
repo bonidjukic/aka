@@ -6,6 +6,19 @@
 
 ---------------------------------------------------------------------
 
+local ffi = require 'ffi'
+
+ffi.cdef [[
+  int  chdir(const char*);
+  char *getcwd(char *buf, size_t size);
+]]
+
+local const = {
+  MAX_PATH = 4096 -- UNIX
+}
+
+---------------------------------------------------------------------
+
 local io       = io
 local io_open  = io.open
 local io_popen = io.popen
@@ -26,10 +39,18 @@ function _M.file_exists(path)
   else return false end
 end
 
--- Returns the output of the linux `pwd` command (current working directory)
+-- Changes the current workdig directory to the specified directory
 --
-function _M.pwd()
-  return _M.os_capture_exec('pwd')
+function _M.chdir(dir)
+  return ffi.C.chdir(dir)
+end
+
+-- Returns the current working directory
+--
+function _M.getcwd()
+  local buf = ffi.new('char[?]', const.MAX_PATH)
+  ffi.C.getcwd(buf, const.MAX_PATH)
+  return ffi.string(buf)
 end
 
 -- Returns path joined with a slash character, e.g. foo/bar/baz

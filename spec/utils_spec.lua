@@ -32,11 +32,23 @@ describe('tests file_exists', function()
   end)
 end)
 
--- pwd
+-- chdir
 --
-describe('tests pwd', function()
+describe('tests chdir', function()
+  it('tests temporary directory', function()
+    utils.chdir('/tmp')
+    utils.chdir('..')
+    assert.are.equal(utils.getcwd(), '/')
+    utils.chdir('tmp')
+    assert.are.equal(utils.getcwd(), '/tmp')
+  end)
+end)
+
+-- getcwd
+--
+describe('tests getcwd', function()
   it('get current dir', function()
-    assert.are.equal(utils.pwd(), io.popen 'pwd':read '*l')
+    assert.are.equal(utils.getcwd(), io.popen 'pwd':read '*l')
   end)
 end)
 
