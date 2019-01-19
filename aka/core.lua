@@ -59,6 +59,9 @@ function _M.run_list_opt(t)
   local cfg = t.config
   local n   = 0
 
+  print('Listing all aka aliases...\n')
+  print(string.rep('-', 40))
+
   local list_recur = function(cfg, list_recur)
     local indent = function()
       for i = 1, n do
@@ -80,7 +83,6 @@ function _M.run_list_opt(t)
     n = n - 1
   end
 
-  print('')
   for k, v in pairs(cfg) do
     if type(v) == 'table' then
       print('[' .. k .. ']')
@@ -90,6 +92,8 @@ function _M.run_list_opt(t)
       print(string.format('[%s = \'%s\']', tostring(k), tostring(v)))
     end
   end
+
+  print(string.rep('-', 40))
   print('')
 end
 
