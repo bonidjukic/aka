@@ -20,6 +20,9 @@ install:
 script:
   - busted --verbose
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 36624b2d-d94d-487f-a793-7ae95b2e521a
+
 branches:
   only:
     - master
