@@ -1,6 +1,7 @@
 return {
   _all = {
     lua = 'luajit',
-    verbose = true
+    verbose = true,
+    coverage = true
   }
 }

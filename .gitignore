@@ -3,3 +3,6 @@
 
 # manual (luastatic) build files
 build/
+
+# luacov report file
+luacov.report.out

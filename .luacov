@@ -1,0 +1,11 @@
+-- @class module
+-- @name luacov.defaults
+return {
+  runreport = true,
+  deletestats = true,
+  ['include'] = {
+    'aka/init$',
+    'aka/core$',
+    'aka/utils$',
+  },
+}
