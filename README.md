@@ -5,6 +5,7 @@
 
 [![LuaRocks version](https://img.shields.io/luarocks/v/bonidjukic/aka.svg)](https://luarocks.org/modules/bonidjukic/aka)
 [![Build Status](https://travis-ci.org/bonidjukic/aka.svg?branch=master)](https://travis-ci.org/bonidjukic/aka)
+[![Code Coverage](https://codecov.io/github/bonidjukic/aka/branch/master/graphs/badge.svg)](https://codecov.io/gh/bonidjukic/aka/branch/master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Motivation
