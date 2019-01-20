@@ -110,7 +110,7 @@ describe('tests load_cfg', function()
     local cfgf, err = utils.load_cfg(tmpf)
 
     assert.is.truthy(cfgf)
-    assert.are.equal(err, nil)
+    assert.is_nil(err)
     assert.are.same(cfg, cfgf)
     assert.are.equal(cfg.alias_1, cfgf.alias_1)
     assert.are.same(cfg.alias_2, cfgf.alias_2)
@@ -120,7 +120,7 @@ end)
 
 -- load_cfg recursive
 --
-describe('tests load_cfg', function()
+describe('tests load_cfg recursive', function()
   local cwd            = utils.getcwd()
   local tmpf           = 'aka_test_file'
   local tmpf_root_dir  = '/tmp/aka_test'
@@ -152,10 +152,27 @@ describe('tests load_cfg', function()
     local cfgf, err = utils.load_cfg(tmpf)
 
     assert.is.truthy(cfgf)
-    assert.are.equal(err, nil)
+    assert.is_nil(err)
     assert.are.same(cfg, cfgf)
     assert.are.equal(cfg.alias_1, cfgf.alias_1)
     assert.are.same(cfg.alias_2, cfgf.alias_2)
     assert.are.equal(cfg.alias_3, cfgf.alias_3)
+  end)
+end)
+
+-- load_cfg recursive - no results
+--
+describe('tests load_cfg recursive - no results', function()
+  local cwd  = utils.getcwd()
+  local tmpf = 'aka_test_fileys'
+
+  teardown(function()
+    utils.chdir(cwd)
+  end)
+
+  it('test config file', function()
+    local cfgf, err = utils.load_cfg(tmpf)
+    assert.is_nil(cfgf)
+    assert.is.truthy(err)
   end)
 end)
