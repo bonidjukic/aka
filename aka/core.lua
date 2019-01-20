@@ -100,7 +100,7 @@ end
 -- Returns the alias specified by the command line argument if there is
 -- a match with the configuration file entries.
 --
--- Returns nil if unable to find matched alias.
+-- Returns nil if unable to find a matched alias.
 --
 function _M.get_cmd(cfg, args, idx)
   if not idx then idx = 1 end
@@ -108,7 +108,16 @@ function _M.get_cmd(cfg, args, idx)
 
   if val then
     if type(val) == 'table' then
+      -- continue searching deeper
       return _M.get_cmd(val, args, idx + 1)
+    else
+      -- we found the match, let's check for input arguments
+      local input_args = {}
+      for i = idx + 1, #args do -- skip the arguments used for alias match
+        input_args[#input_args + 1] = ' ' .. args[i]
+      end
+      -- Return cmd and append input arguments if they exist
+      return val .. table.concat(input_args)
     end
   end
 
