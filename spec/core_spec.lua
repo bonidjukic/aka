@@ -75,5 +75,23 @@ describe('tests get_cmd', function()
       core.get_cmd(cfg, {'alias_2', 'alias_4', 'alias_5'}), 'alias_5')
     assert.are.equal(
       core.get_cmd(cfg, {'alias_6'}), special_chars)
+    assert.are.equal(
+      core.get_cmd(cfg, {'alias_1', 'arg_1'}), 'alias_1 arg_1')
+    assert.are.equal(
+      core.get_cmd(cfg, {'alias_1', 'arg_1', 'arg_2'}), 'alias_1 arg_1 arg_2')
+    assert.are.equal(
+      core.get_cmd(cfg, {'alias_2', 'alias_3', 'arg_1'}), 'alias_3 arg_1')
+    assert.are.equal(
+      core.get_cmd(cfg, {'alias_2', 'arg_1', }), nil)
+    assert.are.equal(
+      core.get_cmd(cfg, {'alias_2', 'alias_4', 'arg_1', 'arg_2' }), nil)
+    assert.are.equal(
+      core.get_cmd(
+        cfg, {'alias_2', 'alias_4', 'alias_5', 'arg_1' }
+      ), 'alias_5 arg_1')
+    assert.are.equal(
+      core.get_cmd(
+        cfg, {'alias_2', 'alias_4', 'alias_5', 'arg_1', 'arg_2' }
+      ), 'alias_5 arg_1 arg_2')
   end)
 end)
