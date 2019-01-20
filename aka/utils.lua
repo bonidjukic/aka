@@ -19,11 +19,12 @@ local const = {
 
 ---------------------------------------------------------------------
 
-local io       = io
-local io_open  = io.open
-local io_popen = io.popen
-local io_close = io.close
-local str_gsub = string.gsub
+local io           = io
+local io_open      = io.open
+local io_popen     = io.popen
+local io_close     = io.close
+local str_gsub     = string.gsub
+local table_concat = table.concat
 
 ---------------------------------------------------------------------
 
@@ -56,7 +57,7 @@ end
 -- Returns path joined with a slash character, e.g. foo/bar/baz
 --
 function _M.path_join(...)
-  return table.concat({...}, '/')
+  return table_concat({...}, '/')
 end
 
 -- Attempts to load the configuration file by recursively seeking for it

@@ -6,7 +6,10 @@
 
 ---------------------------------------------------------------------
 
-local str_fmt = string.format
+local io_write     = io.write
+local str_fmt      = string.format
+local str_rep      = string.rep
+local table_concat = table.concat
 
 ---------------------------------------------------------------------
 
@@ -60,12 +63,12 @@ function _M.run_list_opt(t)
   local n   = 0
 
   print('Listing all aka aliases...\n')
-  print(string.rep('-', 40))
+  print(str_rep('-', 40))
 
   local list_recur = function(cfg, list_recur)
     local indent = function()
       for i = 1, n do
-        io.write('   ')
+        io_write('    ')
       end
     end
 
@@ -77,7 +80,7 @@ function _M.run_list_opt(t)
         list_recur(v, list_recur)
       else
         indent()
-        print(string.format('- [%s = \'%s\']', tostring(k), tostring(v)))
+        print(str_fmt('- [%s = \'%s\']', tostring(k), tostring(v)))
       end
     end
     n = n - 1
@@ -89,11 +92,11 @@ function _M.run_list_opt(t)
       n = n + 1
       list_recur(v, list_recur)
     else
-      print(string.format('[%s = \'%s\']', tostring(k), tostring(v)))
+      print(str_fmt('[%s = \'%s\']', tostring(k), tostring(v)))
     end
   end
 
-  print(string.rep('-', 40))
+  print(str_rep('-', 40))
   print('')
 end
 
@@ -117,7 +120,7 @@ function _M.get_cmd(cfg, args, idx)
         input_args[#input_args + 1] = ' ' .. args[i]
       end
       -- Return cmd and append input arguments if they exist
-      return val .. table.concat(input_args)
+      return val .. table_concat(input_args)
     end
   end
 
