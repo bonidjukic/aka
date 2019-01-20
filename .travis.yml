@@ -16,6 +16,7 @@ before_install:
 install:
   - luarocks install busted
   - luarocks install luacov
+  - luarocks install cluacov
 
 script:
   - busted --verbose
