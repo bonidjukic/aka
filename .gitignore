@@ -6,3 +6,6 @@ build/
 
 # luacov report file
 luacov.report.out
+
+# meta directory with project related files, e.g. reminders, todo's etc
+meta/
