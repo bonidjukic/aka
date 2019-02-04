@@ -1,6 +1,6 @@
 # aka
 
-**aka is a simple command-line tool which lets you define per directory config files as aliases for shell commands.**
+**aka is a simple, single-file-executable command-line tool which lets you define per directory config files as aliases for shell commands.**
 
 
 [![LuaRocks version](https://img.shields.io/luarocks/v/bonidjukic/aka.svg)](https://luarocks.org/modules/bonidjukic/aka)
