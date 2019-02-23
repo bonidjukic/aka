@@ -115,6 +115,25 @@ function _M.os_capture_exec(cmd)
   return s
 end
 
+-- Returns the full filename of the current rockspec file
+--
+function _M.get_rockspec_filename()
+  return _M.os_capture_exec('find *.rockspec')
+end
+
+
+-- Returns the aka version from the current rockspec file
+--
+function _M.get_aka_version()
+  local rockspec = {}
+  local chunk, err = loadfile(_M.get_rockspec_filename(), 't', rockspec)
+
+  if not err then
+    chunk()
+    return rockspec['version']
+  end
+end
+
 ---------------------------------------------------------------------
 
 return _M

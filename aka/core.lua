@@ -6,6 +6,8 @@
 
 ---------------------------------------------------------------------
 
+local utils        = require 'aka.utils'
+
 local io_write     = io.write
 local str_fmt      = string.format
 local str_rep      = string.rep
@@ -24,8 +26,12 @@ _M.CFG_FILE = '.aka'
 -- Returns all available CLI options
 --
 function _M.get_available_opts()
-  return { help = {'-h', '--help'},
-           list = {'-l', '--list'}, }
+  return { help    = { flags = {'-h', '--help'},
+                       help_text = 'List all aliases'},
+           list    = { flags = {'-l', '--list'},
+                       help_text = 'Print usage'},
+           version = { flags = {'-v', '--version'},
+                       help_text = 'Show version information'} }
 end
 
 -- Returns CLI option which matches one of the available options defined
@@ -33,9 +39,9 @@ end
 --
 function _M.get_opt(args)
   if #args == 1 then -- option can only be a single argument
-    for opt_label, opts in pairs(_M.get_available_opts()) do
-      for _, opt in pairs(opts) do
-        if opt == args[1] then return opt_label end
+    for opt_label, opt in pairs(_M.get_available_opts()) do
+      for _, flag in pairs(opt['flags']) do
+        if flag == args[1] then return opt_label end
       end
     end
   end
@@ -98,6 +104,12 @@ function _M.run_list_opt(t)
 
   print(str_rep('-', 40))
   print('')
+end
+
+-- Prints version information to the screen
+--
+function _M.run_version_opt(t)
+  print(str_fmt('aka version: %s', utils.get_aka_version()))
 end
 
 -- Returns the alias specified by the command line argument if there is

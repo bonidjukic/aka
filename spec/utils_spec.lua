@@ -176,3 +176,43 @@ describe('tests load_cfg recursive - no results', function()
     assert.is.truthy(err)
   end)
 end)
+
+-- get_rockspec_filename
+--
+describe('tests get_rockspec_filename', function()
+  it('test getting current rockspec filename', function()
+    local filename = utils.get_rockspec_filename()
+
+    assert.is.truthy(filename)
+    start_idx, end_idx = string.find(filename, 'aka')
+    assert.equal(start_idx, 1)
+    assert.equal(end_idx, 3)
+
+    capture = '(%a+)-(%d).(%d).(%d)-(%d).(%a+)'
+    aka, maj, min, patch, spec, rockspec = string.match(filename, capture)
+    assert.equal(aka, 'aka')
+    assert.equal(rockspec, 'rockspec')
+  end)
+end)
+
+-- get_aka_version
+--
+describe('tests get_aka_version', function()
+  it('test getting current aka version from the rockspec file', function()
+    local version = utils.get_aka_version()
+
+    assert.is.truthy(version)
+
+    capture = '(%d).(%d).(%d)-(%d)'
+    maj, min, patch, spec = string.match(version, capture)
+    assert.equal(type(tonumber(maj)), 'number')
+    assert.equal(type(tonumber(min)), 'number')
+    assert.equal(type(tonumber(patch)), 'number')
+
+    rockspec_filename = utils.os_capture_exec('find *.rockspec')
+    local rockspec = {}
+    local chunk, err = loadfile(rockspec_filename, 't', rockspec)
+    chunk()
+    assert.equal(rockspec['version'], version)
+  end)
+end)
