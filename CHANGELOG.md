@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add ability to view the current aka version (`-v`, `--version`)
+- Generate help text dynamically (from table in `core.get_available_opts`)
 
 ## [1.3.0] - 2019-01-20
 ### Added
