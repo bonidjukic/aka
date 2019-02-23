@@ -12,6 +12,7 @@ local io_write     = io.write
 local str_fmt      = string.format
 local str_rep      = string.rep
 local table_concat = table.concat
+local table_insert = table.insert
 
 ---------------------------------------------------------------------
 
@@ -58,7 +59,7 @@ end
 -- Prints help message
 --
 function _M.run_help_opt(t)
-  return _M.print_help()
+  print(_M.get_help_str())
 end
 
 -- Prints all available aliases found in the configuration file
@@ -146,22 +147,29 @@ function _M.print_err(err)
   print(str_fmt('aka: %s\nSee \'aka -h\' or \'aka --help\'', err))
 end
 
--- Prints usage message to the screen
+-- Returns the usage text using the definition table
+-- from the `get_available_opts` function
 --
-function _M.print_help()
-  print [[
-aka - per directory shell aliases
+function _M.get_help_str()
+  local t = {
+    'aka - per directory shell aliases\n\n',
+    'Usage:\n',
+    '  aka alias [sub_alias sub_sub_alias ...]\n\n'
+  }
 
-Usage:
-  aka alias [sub_alias sub_sub_alias ...]
-  aka -l|--list
-  aka -h|--help
+  for opt_label, opt in pairs(_M.get_available_opts()) do
+    local flags = table_concat(opt['flags'], '|')
+    table_insert(t, str_fmt('  aka %s\n', flags))
+  end
 
+  table_insert(t, '\nOptions:')
 
-Options:
-  -l, --list        List all aliases
-  -h, --help        Print usage
-]]
+  for opt_label, opt in pairs(_M.get_available_opts()) do
+    local flags = table_concat(opt['flags'], ', ')
+    table_insert(t, str_fmt('\n  aka %s\t%s', flags, opt['help_text']))
+  end
+
+  return table_concat(t)
 end
 
 ---------------------------------------------------------------------

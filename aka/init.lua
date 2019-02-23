@@ -20,7 +20,7 @@ local os_execute = os.execute
 local opt = aka.get_opt(args)
 
 -- If we have a single argument, or a `help` option -> print help message
-if #args == 0 or (opt and opt == 'help') then aka.print_help() return end
+if #args == 0 or (opt and opt == 'help') then aka.run_help_opt() return end
 
 -- Load configuration
 

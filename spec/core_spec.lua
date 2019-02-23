@@ -95,3 +95,21 @@ describe('tests get_cmd', function()
       ), 'alias_5 arg_1 arg_2')
   end)
 end)
+
+-- get_help_str
+--
+describe('tests get_help_str', function()
+  local s = core.get_help_str()
+  local str_match = string.match
+
+  it('tests generation of the help str', function()
+    assert.is_true(type(s) == 'string')
+    assert.is_not_nil(str_match(s, 'aka...per directory shell aliases'))
+    assert.is_not_nil(str_match(s, 'Usage'))
+    assert.is_not_nil(str_match(s, 'Options'))
+    assert.is_not_nil(str_match(s, 'aka alias..sub_alias sub_sub_alias ...]'))
+    assert.is_not_nil(str_match(s, '-h.--help'))
+    assert.is_not_nil(str_match(s, '-l.--list'))
+    assert.is_not_nil(str_match(s, '-v.--version'))
+  end)
+end)
